@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Subnet Calculator</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <meta name="description" content="This IP subnet calculator makes subnetting easy, providing full subnet information like IP ranges, subnet masks and more from just basic network information.">
+    <link rel="preload" href="./assets/fonts/inter-v12-latin-regular.woff2" as="font" crossorigin type="font/woff2">
+    <link rel="preload" href="./assets/fonts/inter-v12-latin-500.woff2" as="font" crossorigin type="font/woff2">
+    <link rel="preload" href="./assets/fonts/inter-v12-latin-600.woff2" as="font" crossorigin type="font/woff2">
+    <link rel="preload" href="./assets/fonts/inter-v12-latin-800.woff2" as="font" crossorigin type="font/woff2">
+    <script type="text/javascript">
+        window._ = document.getElementById.bind(document);
+        window.$ = document.querySelector.bind(document);
+        window.$$ = document.querySelectorAll.bind(document);
+        window.defaultSystem = "imperial";
+        localStorage.setItem("theme", "light");
+    </script>
+    <link rel="stylesheet" href="./assets/css/main.min.css" />
+    <script src="./assets/js/all-calculators.js" defer></script>
+</head>
+<body style="background-color: transparent !important; min-height: 0 !important">
+
+<div style="width: 100%;">
+    <div style="width:350px;float:left;padding: 15px;">
+        <div class="calculator-settings">
+            <div class="calculator-setting" id="calculator_form">
+                <div class="calculator-content calculator-content--bookmarks">
+                	<button class="tab-item tab-item--active" onclick="switchTab(event, 0)">IPv4</button>
+                	<button class="tab-item" onclick="switchTab(event, 1)">IPv6</button>
+                </div>
+                <div class="calculator-content col tab tab--active" data-tab="0">
+                	<div class="input-wrapper row">
+                		<label class="input col">
+                			<input type="hidden" value="any" id="network_class"/>
+                			<p class="input__title">Network Class</p>
+                			<button class="button-switcher button-switcher--active" type="button" onclick="switcher(this, 'network_class', '')" value="any" id="network_class-a">
+                				<span class="button-switcher__text button-switcher__text--active">Any</span>
+                			</button>
+                		</label>
+                		<label class="input col">
+                			<p class="input__title"></p>
+                			<button class="button-switcher" type="button" onclick="switcher(this, 'network_class', '')" value="a" id="network_class-b">
+                				<span class="button-switcher__text">A</span>
+                			</button>
+                		</label>
+                		<label class="input col">
+                			<p class="input__title"></p>
+                			<button class="button-switcher" type="button" onclick="switcher(this, 'network_class', '')" value="b" id="network_class-c">
+                				<span class="button-switcher__text">B</span>
+                			</button>
+                		</label>
+                		<label class="input col">
+                			<p class="input__title"></p>
+                			<button class="button-switcher" type="button" onclick="switcher(this, 'network_class', '')" value="c" id="network_class-d">
+                				<span class="button-switcher__text">C</span>
+                			</button>
+                		</label>
+                	</div>
+                	<div class="input-wrapper row">
+                		<label class="input col ">
+                			<p class="input__title">Subnet</p>
+                			<div class="dropdown-wrapper">
+                				<div class="input-field row " tabindex="0">
+                					<select class="input-field__text" onchange="toggleRelatedInputs(this)" id="subnet">
+                							<option value="255.255.255.255 /32" >
+                							255.255.255.255 /32
+                							</option>
+                							<option value="255.255.255.254 /31" >
+                							255.255.255.254 /31
+                							</option>
+                							<option value="255.255.255.252 /30" selected>
+                							255.255.255.252 /30
+                							</option>
+                							<option value="255.255.255.248 /29" >
+                							255.255.255.248 /29
+                							</option>
+                							<option value="255.255.255.240 /28" >
+                							255.255.255.240 /28
+                							</option>
+                							<option value="255.255.255.224 /27" >
+                							255.255.255.224 /27
+                							</option>
+                							<option value="255.255.255.192 /26" >
+                							255.255.255.192 /26
+                							</option>
+                							<option value="255.255.255.128 /25" >
+                							255.255.255.128 /25
+                							</option>
+                							<option value="255.255.255.0 /24" >
+                							255.255.255.0 /24
+                							</option>
+                							<option value="255.255.254.0 /23" >
+                							255.255.254.0 /23
+                							</option>
+                							<option value="255.255.252.0 /22" >
+                							255.255.252.0 /22
+                							</option>
+                							<option value="255.255.248.0 /21" >
+                							255.255.248.0 /21
+                							</option>
+                							<option value="255.255.240.0 /20" >
+                							255.255.240.0 /20
+                							</option>
+                							<option value="255.255.224.0 /19" >
+                							255.255.224.0 /19
+                							</option>
+                							<option value="255.255.192.0 /18" >
+                							255.255.192.0 /18
+                							</option>
+                							<option value="255.255.128.0 /17" >
+                							255.255.128.0 /17
+                							</option>
+                							<option value="255.255.0.0 /16" >
+                							255.255.0.0 /16
+                							</option>
+                							<option value="255.254.0.0 /15" >
+                							255.254.0.0 /15
+                							</option>
+                							<option value="255.252.0.0 /14" >
+                							255.252.0.0 /14
+                							</option>
+                							<option value="255.248.0.0 /13" >
+                							255.248.0.0 /13
+                							</option>
+                							<option value="255.240.0.0 /12" >
+                							255.240.0.0 /12
+                							</option>
+                							<option value="255.224.0.0 /11" >
+                							255.224.0.0 /11
+                							</option>
+                							<option value="255.192.0.0 /10" >
+                							255.192.0.0 /10
+                							</option>
+                							<option value="255.128.0.0 /9" >
+                							255.128.0.0 /9
+                							</option>
+                							<option value="255.0.0.0 /8" >
+                							255.0.0.0 /8
+                							</option>
+                							<option value="254.0.0.0 /7" >
+                							254.0.0.0 /7
+                							</option>
+                							<option value="252.0.0.0 /6" >
+                							252.0.0.0 /6
+                							</option>
+                							<option value="248.0.0.0 /5" >
+                							248.0.0.0 /5
+                							</option>
+                							<option value="240.0.0.0 /4" >
+                							240.0.0.0 /4
+                							</option>
+                							<option value="224.0.0.0 /3" >
+                							224.0.0.0 /3
+                							</option>
+                							<option value="192.0.0.0 /2" >
+                							192.0.0.0 /2
+                							</option>
+                							<option value="128.0.0.0 /1" >
+                							128.0.0.0 /1
+                							</option>
+                					</select>
+                				</div>
+                				<div class="input-hints row">
+                					<span class="input-hints__hint input-hints__hint--comma">Subnets count: 32</span>
+                				</div>
+                			</div>
+                		</label>	</div>
+                	<div class="input-wrapper row">
+                		<label class="input col ">
+                			<p class="input__title">IP Address</p>
+                			<div class="input-field row">
+                				
+                				<input type="text" class="input-field__input" placeholder="a.b.c.d" id="ipv4_address" value="94.204.187.191" />
+                				
+                			</div>
+                		</label>	</div>
+                </div>
+                <div class="calculator-content col tab" data-tab="1">
+                	<div class="input-wrapper row">
+                		<label class="input col ">
+                			<p class="input__title">Prefix Length</p>
+                			<div class="dropdown-wrapper">
+                				<div class="input-field row " tabindex="0">
+                					<select class="input-field__text" onchange="toggleRelatedInputs(this)" id="prefix_length">
+                							<option value="/1" >
+                							/1
+                							</option>
+                							<option value="/2" >
+                							/2
+                							</option>
+                							<option value="/3" >
+                							/3
+                							</option>
+                							<option value="/4" >
+                							/4
+                							</option>
+                							<option value="/5" >
+                							/5
+                							</option>
+                							<option value="/6" >
+                							/6
+                							</option>
+                							<option value="/7" >
+                							/7
+                							</option>
+                							<option value="/8" >
+                							/8
+                							</option>
+                							<option value="/9" >
+                							/9
+                							</option>
+                							<option value="/10" >
+                							/10
+                							</option>
+                							<option value="/11" >
+                							/11
+                							</option>
+                							<option value="/12" >
+                							/12
+                							</option>
+                							<option value="/13" >
+                							/13
+                							</option>
+                							<option value="/14" >
+                							/14
+                							</option>
+                							<option value="/15" >
+                							/15
+                							</option>
+                							<option value="/16" >
+                							/16
+                							</option>
+                							<option value="/17" >
+                							/17
+                							</option>
+                							<option value="/18" >
+                							/18
+                							</option>
+                							<option value="/19" >
+                							/19
+                							</option>
+                							<option value="/20" >
+                							/20
+                							</option>
+                							<option value="/21" >
+                							/21
+                							</option>
+                							<option value="/22" >
+                							/22
+                							</option>
+                							<option value="/23" >
+                							/23
+                							</option>
+                							<option value="/24" >
+                							/24
+                							</option>
+                							<option value="/25" >
+                							/25
+                							</option>
+                							<option value="/26" >
+                							/26
+                							</option>
+                							<option value="/27" >
+                							/27
+                							</option>
+                							<option value="/28" >
+                							/28
+                							</option>
+                							<option value="/29" >
+                							/29
+                							</option>
+                							<option value="/30" >
+                							/30
+                							</option>
+                							<option value="/31" >
+                							/31
+                							</option>
+                							<option value="/32" >
+                							/32
+                							</option>
+                							<option value="/33" >
+                							/33
+                							</option>
+                							<option value="/34" >
+                							/34
+                							</option>
+                							<option value="/35" >
+                							/35
+                							</option>
+                							<option value="/36" >
+                							/36
+                							</option>
+                							<option value="/37" >
+                							/37
+                							</option>
+                							<option value="/38" >
+                							/38
+                							</option>
+                							<option value="/39" >
+                							/39
+                							</option>
+                							<option value="/40" >
+                							/40
+                							</option>
+                							<option value="/41" >
+                							/41
+                							</option>
+                							<option value="/42" >
+                							/42
+                							</option>
+                							<option value="/43" >
+                							/43
+                							</option>
+                							<option value="/44" >
+                							/44
+                							</option>
+                							<option value="/45" >
+                							/45
+                							</option>
+                							<option value="/46" >
+                							/46
+                							</option>
+                							<option value="/47" >
+                							/47
+                							</option>
+                							<option value="/48" >
+                							/48
+                							</option>
+                							<option value="/49" >
+                							/49
+                							</option>
+                							<option value="/50" >
+                							/50
+                							</option>
+                							<option value="/51" >
+                							/51
+                							</option>
+                							<option value="/52" >
+                							/52
+                							</option>
+                							<option value="/53" >
+                							/53
+                							</option>
+                							<option value="/54" >
+                							/54
+                							</option>
+                							<option value="/55" >
+                							/55
+                							</option>
+                							<option value="/56" >
+                							/56
+                							</option>
+                							<option value="/57" >
+                							/57
+                							</option>
+                							<option value="/58" >
+                							/58
+                							</option>
+                							<option value="/59" >
+                							/59
+                							</option>
+                							<option value="/60" >
+                							/60
+                							</option>
+                							<option value="/61" >
+                							/61
+                							</option>
+                							<option value="/62" >
+                							/62
+                							</option>
+                							<option value="/63" >
+                							/63
+                							</option>
+                							<option value="/64" selected>
+                							/64
+                							</option>
+                							<option value="/65" >
+                							/65
+                							</option>
+                							<option value="/66" >
+                							/66
+                							</option>
+                							<option value="/67" >
+                							/67
+                							</option>
+                							<option value="/68" >
+                							/68
+                							</option>
+                							<option value="/69" >
+                							/69
+                							</option>
+                							<option value="/70" >
+                							/70
+                							</option>
+                							<option value="/71" >
+                							/71
+                							</option>
+                							<option value="/72" >
+                							/72
+                							</option>
+                							<option value="/73" >
+                							/73
+                							</option>
+                							<option value="/74" >
+                							/74
+                							</option>
+                							<option value="/75" >
+                							/75
+                							</option>
+                							<option value="/76" >
+                							/76
+                							</option>
+                							<option value="/77" >
+                							/77
+                							</option>
+                							<option value="/78" >
+                							/78
+                							</option>
+                							<option value="/79" >
+                							/79
+                							</option>
+                							<option value="/80" >
+                							/80
+                							</option>
+                							<option value="/81" >
+                							/81
+                							</option>
+                							<option value="/82" >
+                							/82
+                							</option>
+                							<option value="/83" >
+                							/83
+                							</option>
+                							<option value="/84" >
+                							/84
+                							</option>
+                							<option value="/85" >
+                							/85
+                							</option>
+                							<option value="/86" >
+                							/86
+                							</option>
+                							<option value="/87" >
+                							/87
+                							</option>
+                							<option value="/88" >
+                							/88
+                							</option>
+                							<option value="/89" >
+                							/89
+                							</option>
+                							<option value="/90" >
+                							/90
+                							</option>
+                							<option value="/91" >
+                							/91
+                							</option>
+                							<option value="/92" >
+                							/92
+                							</option>
+                							<option value="/93" >
+                							/93
+                							</option>
+                							<option value="/94" >
+                							/94
+                							</option>
+                							<option value="/95" >
+                							/95
+                							</option>
+                							<option value="/96" >
+                							/96
+                							</option>
+                							<option value="/97" >
+                							/97
+                							</option>
+                							<option value="/98" >
+                							/98
+                							</option>
+                							<option value="/99" >
+                							/99
+                							</option>
+                							<option value="/100" >
+                							/100
+                							</option>
+                							<option value="/101" >
+                							/101
+                							</option>
+                							<option value="/102" >
+                							/102
+                							</option>
+                							<option value="/103" >
+                							/103
+                							</option>
+                							<option value="/104" >
+                							/104
+                							</option>
+                							<option value="/105" >
+                							/105
+                							</option>
+                							<option value="/106" >
+                							/106
+                							</option>
+                							<option value="/107" >
+                							/107
+                							</option>
+                							<option value="/108" >
+                							/108
+                							</option>
+                							<option value="/109" >
+                							/109
+                							</option>
+                							<option value="/110" >
+                							/110
+                							</option>
+                							<option value="/111" >
+                							/111
+                							</option>
+                							<option value="/112" >
+                							/112
+                							</option>
+                							<option value="/113" >
+                							/113
+                							</option>
+                							<option value="/114" >
+                							/114
+                							</option>
+                							<option value="/115" >
+                							/115
+                							</option>
+                							<option value="/116" >
+                							/116
+                							</option>
+                							<option value="/117" >
+                							/117
+                							</option>
+                							<option value="/118" >
+                							/118
+                							</option>
+                							<option value="/119" >
+                							/119
+                							</option>
+                							<option value="/120" >
+                							/120
+                							</option>
+                							<option value="/121" >
+                							/121
+                							</option>
+                							<option value="/122" >
+                							/122
+                							</option>
+                							<option value="/123" >
+                							/123
+                							</option>
+                							<option value="/124" >
+                							/124
+                							</option>
+                							<option value="/125" >
+                							/125
+                							</option>
+                							<option value="/126" >
+                							/126
+                							</option>
+                							<option value="/127" >
+                							/127
+                							</option>
+                							<option value="/128" >
+                							/128
+                							</option>
+                					</select>
+                				</div>
+                			</div>
+                		</label>	</div>
+                	<div class="input-wrapper row">
+                		<label class="input col ">
+                			<p class="input__title">IP Address</p>
+                			<div class="input-field row">
+                				
+                				<input type="text" class="input-field__input" placeholder="a:b:c:d:e:f:g:h" id="ipv6_address" value="2001:db8:85a3::8a2e:370:7334" />
+                				
+                			</div>
+                			<div class="input-hints row">
+                				<span class="input-hints__hint input-hints__hint--comma">You can use :: for shortened format</span>
+                			</div>
+                		</label>	</div>
+                </div>
+                <div class="calculator-content calculator-content--gray calculator-content--footer calculator-content--small row  " >
+                
+                
+                
+                
+                	<button class="button button--primary ml-auto" onclick="calculate(this)">Calculate</button>
+                </div>
+                
+                
+                
+                
+                	<script type="text/javascript" src="./assets/js/calculator.js"></script>
+            </div>
+        </div>
+    </div>
+    <div style="float:left;padding: 15px; overflow: scroll;">
+        <div class="calculator-result calculator-result--error col" id="error-box">
+        	<div class="row">
+        		<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        	<path fill-rule="evenodd" clip-rule="evenodd" d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM8.70711
+        						7.29289C8.31658 6.90237 7.68342 6.90237 7.29289 7.29289C6.90237 7.68342 6.90237 8.31658 7.29289 8.70711L8.58579 10L7.29289 11.2929C6.90237 11.6834 6.90237 12.3166 7.29289
+        						12.7071C7.68342 13.0976 8.31658 13.0976 8.70711 12.7071L10 11.4142L11.2929 12.7071C11.6834 13.0976 12.3166 13.0976 12.7071 12.7071C13.0976 12.3166 13.0976 11.6834 12.7071
+        						11.2929L11.4142 10L12.7071 8.70711C13.0976 8.31658 13.0976 7.68342 12.7071 7.29289C12.3166 6.90237 11.6834 6.90237 11.2929 7.29289L10 8.58579L8.70711 7.29289Z" fill="#F87171" class="dark:fill-red-200"></path>
+        </svg>
+        		<p class="calculator-error__title">There was an error with your calculation.</p>
+        	</div>
+        	<div class="col" id="error-list">
+        	</div>
+        </div>        <span id="calculator_result"><div class="calculator-result col tab tab--active" data-tab="0">
+	<div class="result-table__wrapper"> 
+		<table class="result-table">
+			<thead class="dark">
+				<tr>
+					<th class="dark indigo" colspan="4">IP SUBNET</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>IP Address</th>
+					<td id="ipv4_ip_address">94.204.187.191</td>
+					<th>Short</th>
+					<td id="ipv4_short_address">94.204.187.191 /30</td>
+				</tr>
+				<tr>
+					<th>IP Type</th>
+					<td id="ipv4_type">Public</td>
+					<th>Integer ID</th>
+					<td id="ipv4_integer_id">1590475711</td>
+				</tr>
+				<tr>
+					<th>Network Address</th>
+					<td id="ipv4_net_address">94.204.187.188</td>
+					<th>Hex ID</th>
+					<td id="ipv4_hex_id">0x5eccbbbf</td>
+				</tr>
+				<tr>
+					<th>Broadcast Address</th>
+					<td id="ipv4_broadcast_address">94.204.187.191</td>
+					<th>in-addr.arpa</th>
+					<td id="ipv4_arpa_address">191.187.204.94.in-addr.arpa</td>
+				</tr>
+				<tr>
+					<th>Total Number of Hosts</th>
+					<td id="ipv4_total_hosts">4</td>
+					<th>IPv4 Mapped Address</th>
+					<td id="ipv4_mapped_address">::ffff:5ecc.bbbf</td>
+				</tr>
+				<tr>
+					<th>Number of Usable Hosts</th>
+					<td id="ipv4_usable_hosts">2</td>
+					<th>6to4 Prefix</th>
+					<td id="ipv4_6to4_prefix">2002:5ecc.bbbf::/48</td>
+				</tr>
+				<tr>
+					<th>Subnet Mask</th>
+					<td id="ipv4_subnet_mask">255.255.255.252</td>
+					<th>IP Class</th>
+					<td id="ipv4_ip_class">C</td>
+				</tr>
+				<tr>
+					<th>Wildcard Mask</th>
+					<td id="ipv4_wildcard_mask">0.0.0.3</td>
+					<th>CIDR Notation</th>
+					<td id="ipv4_cidr_notation">/30</td>
+				</tr>
+				<tr>
+					<th>Usable Host IP Range</th>
+					<td colspan="3" id="ipv4_usable_host_range">94.204.187.189 - 94.204.187.190</td>
+				</tr>
+				<tr>
+					<th>Binary ID</th>
+					<td colspan="3" id="ipv4_binary_id">01011110110011001011101110111111</td>
+				</tr>
+				<tr>
+					<th>Binary Subnet Mask</th>
+					<td colspan="3" id="ipv4_binary_mask">11111111.11111111.11111111.11111100</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="calculator-result col tab" data-tab="1">
+	<div class="result-table__wrapper"> 
+		<table class="result-table">
+			<thead class="dark">
+				<tr>
+					<th class="dark indigo" colspan="2">IP SUBNET</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>IP Address</th>
+					<td class="wrap" id="ipv6_ip_address">2001:db8:85a3::8a2e:370:7334/64</td>
+				</tr>
+				<tr>
+					<th>Full IP Address</th>
+					<td class="wrap" id="ipv6_full_ip_address">2001:0db8:85a3:0000:0000:8a2e:0370:7334</td>
+				</tr>
+				<tr>
+					<th>Total IP Addresses</th>
+					<td class="wrap" id="ipv6_total_addresses">18446744073709551616</td>
+				</tr>
+				<tr>
+					<th>Total /64 Networks</th>
+					<td class="wrap" id="ipv6_total_networks"></td>
+				</tr>
+				<tr>
+					<th>Network</th>
+					<td class="wrap" id="ipv6_network">2001:0db8:85a3:0000::</td>
+				</tr>
+				<tr>
+					<th>IP Range</th>
+					<td class="wrap"id="ipv6_ip_range">2001:0db8:85a3:0000:0000:0000:0000:0000 - 2001:0db8:85a3:0000:ffff:ffff:ffff:ffff</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</span>
+    </div>
+</div>
+
+<script async src="./assets/js/lib/math.min.js"></script>
+<script defer src="./assets/js/functions.js"></script>
+
+</body>
+</html>
