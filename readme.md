@@ -12,8 +12,7 @@ This IP subnet calculator makes subnetting easy, providing full subnet informati
 3. Activate the [Subnet Calculator](https://www.calculator.io/subnet-calculator/ "Subnet Calculator Homepage") plugin through the "Plugins" menu in WordPress.
 
 ## Usage
-* Add the shortcode `[ci_subnet_calculator]` to your page or post and configure default mortgage parameters.
-* If you are using widgets, just add the Subnet Calculator to the sidebar through the `Appearance -> Widgets -> Subnet Calculator` menu in WordPress.
+* Add the shortcode `[ci_subnet_calculator]` to your page, post or sidebar.
 * Add the following code: `<?php display_ci_subnet_calculator(); ?>` to your template where you would like the Subnet Calculator to appear.
 
 ## Libraries in Use
