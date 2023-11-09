@@ -13,6 +13,8 @@ This IP subnet calculator makes subnetting easy, providing full subnet informati
 
 This IP subnet calculator makes subnetting easy, providing full subnet information like IP ranges, subnet masks and more from just basic network information.
 
+[Subnet Calculator Homepage](https://www.calculator.io/subnet-calculator/ "Subnet Calculator Homepage")
+
 __Shortcode__
 
 Use the Subnet Calculator shortcode:
