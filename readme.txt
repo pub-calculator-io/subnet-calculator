@@ -1,6 +1,6 @@
 === Subnet Calculator by Calculator.iO ===
 Contributors: calculatorio
-Tags: 
+Tags: ipv4 subnetting, ipv6 subnets, network addresses, usable host ranges, subnet mask, ip class, tcp/ip, subnetting, classless inter-domain routing (cidr), network mask
 Requires at least: 5.0
 Tested up to: 6.4.0
 Stable tag: 1.0.0
