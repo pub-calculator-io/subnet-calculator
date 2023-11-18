@@ -1,4 +1,4 @@
-# Subnet Calculator WordPress Widget by [Calculator.iO](https://www.calculator.io/ "Calculator.iO Homepage")
+# Subnet Calculator Widget for WordPress
 
 This IP subnet calculator makes subnetting easy, providing full subnet information like IP ranges, subnet masks and more from just basic network information.
 
