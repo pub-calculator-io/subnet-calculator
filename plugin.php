@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Subnet Calculator by www.calculator.io
+Plugin Name: CI Subnet calculator
 Plugin URI: https://www.calculator.io/subnet-calculator/
 Description: This IP subnet calculator makes subnetting easy, providing full subnet information like IP ranges, subnet masks and more from just basic network information.
 Version: 1.0.0

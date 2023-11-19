@@ -1,4 +1,4 @@
-=== Subnet Calculator by www.calculator.io ===
+=== CI Subnet calculator ===
 Contributors: calculatorio
 Tags: ipv4 subnetting, ipv6 subnets, network addresses, usable host ranges, subnet mask, ip class, tcp/ip, subnetting, classless inter-domain routing (cidr), network mask
 Requires at least: 5.0
