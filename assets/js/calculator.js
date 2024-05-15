@@ -11,7 +11,7 @@ function calculate() {
           return Number(segment) <= 255 && RegExp(/^(0|[1-9]\d*)$/).test(segment);
         });
       if(!ipv4_address_valid){
-        input.error('ipv4_address', 'Please provide a valid IPv4 address: a.b.c.d, where 0 <= a|b|c|d <= 255.');
+        input.error('ipv4_address', 'Provide a valid IPv4 address: a.b.c.d, where 0 <= a|b|c|d <= 255.');
       }
       if(!input.valid()) return;
 
@@ -84,7 +84,7 @@ function calculate() {
           return segment == '' || RegExp(/^[0-9a-fA-F]{1,4}$/).test(segment)
         });
       if(!ipv6_address_valid){
-        input.error('ipv6_address', 'Please provide a valid IPv6 address: a:b:c:d:e:f:g:h or shortened format using :: for omitting zero-segments (e.g. a::h), where 0 <= a|b|c|d|e|f|g|h <= ffff.');
+        input.error('ipv6_address', 'Provide a valid IPv6 address: a:b:c:d:e:f:g:h or shortened format using :: for omitting zero-segments (e.g. a::h), where 0 <= a|b|c|d|e|f|g|h <= ffff.');
       }
       if(!input.valid()) return;
 

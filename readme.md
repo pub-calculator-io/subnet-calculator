@@ -3,7 +3,6 @@
 This IP subnet calculator makes subnetting easy, providing full subnet information like IP ranges, subnet masks and more from just basic network information.
 
 ![Subnet Calculator Input Form](/assets/images/screenshot-1.png "Subnet Calculator Input Form")
-![Subnet Calculator Calculation Results](/assets/images/screenshot-2.png "Subnet Calculator Calculation Results")
 
 ## Installation
 

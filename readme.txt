@@ -24,7 +24,6 @@ Add the following code to your template where you would like the Subnet Calculat
 == Screenshots ==
 
 1. The Subnet Calculator Input Form.
-2. The Subnet Calculator Calculation Results.
 
 == Installation ==
 

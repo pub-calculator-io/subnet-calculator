@@ -590,13 +590,16 @@
                 
                 
                 
-                	<button class="button button--primary ml-auto" onclick="calculate(this)">Calculate</button>
+                	<button class="button button--primary ml-auto" onclick="calculate(this); animateElements();" data-action="calculate" id="action-button">Calculate</button>
                 </div>
                 
                 
+                	<script type="text/javascript" src="./assets/js/lib/math.min.js" async></script>
                 
                 
-                	<script type="text/javascript" src="./assets/js/calculator.js"></script>
+                
+                
+                	<script type="text/javascript" src="./assets/js/calculator.js" defer></script>
             </div>
         </div>
     </div>
@@ -611,8 +614,7 @@
         </svg>
         		<p class="calculator-error__title">There was an error with your calculation.</p>
         	</div>
-        	<div class="col" id="error-list">
-        	</div>
+        	<div class="col" id="error-list"></div>
         </div>        <span id="calculator_result"><div class="calculator-result col tab tab--active" data-tab="0">
 	<div class="result-table__wrapper"> 
 		<table class="result-table">
@@ -624,63 +626,63 @@
 			<tbody>
 				<tr>
 					<th>IP Address</th>
-					<td id="ipv4_ip_address">94.204.187.191</td>
+					<td id="ipv4_ip_address" class="animate">94.204.187.191</td>
 					<th>Short</th>
-					<td id="ipv4_short_address">94.204.187.191 /30</td>
+					<td id="ipv4_short_address" class="animate">94.204.187.191 /30</td>
 				</tr>
 				<tr>
 					<th>IP Type</th>
 					<td id="ipv4_type">Public</td>
 					<th>Integer ID</th>
-					<td id="ipv4_integer_id">1590475711</td>
+					<td id="ipv4_integer_id" class="animate">1590475711</td>
 				</tr>
 				<tr>
 					<th>Network Address</th>
-					<td id="ipv4_net_address">94.204.187.188</td>
+					<td id="ipv4_net_address" class="animate">94.204.187.188</td>
 					<th>Hex ID</th>
-					<td id="ipv4_hex_id">0x5eccbbbf</td>
+					<td id="ipv4_hex_id" class="animate">0x5eccbbbf</td>
 				</tr>
 				<tr>
 					<th>Broadcast Address</th>
-					<td id="ipv4_broadcast_address">94.204.187.191</td>
+					<td id="ipv4_broadcast_address" class="animate">94.204.187.191</td>
 					<th>in-addr.arpa</th>
-					<td id="ipv4_arpa_address">191.187.204.94.in-addr.arpa</td>
+					<td id="ipv4_arpa_address" class="animate">191.187.204.94.in-addr.arpa</td>
 				</tr>
 				<tr>
 					<th>Total Number of Hosts</th>
-					<td id="ipv4_total_hosts">4</td>
+					<td id="ipv4_total_hosts" class="animate">4</td>
 					<th>IPv4 Mapped Address</th>
-					<td id="ipv4_mapped_address">::ffff:5ecc.bbbf</td>
+					<td id="ipv4_mapped_address" class="animate">::ffff:5ecc.bbbf</td>
 				</tr>
 				<tr>
 					<th>Number of Usable Hosts</th>
-					<td id="ipv4_usable_hosts">2</td>
+					<td id="ipv4_usable_hosts" class="animate">2</td>
 					<th>6to4 Prefix</th>
-					<td id="ipv4_6to4_prefix">2002:5ecc.bbbf::/48</td>
+					<td id="ipv4_6to4_prefix" class="animate">2002:5ecc.bbbf::/48</td>
 				</tr>
 				<tr>
 					<th>Subnet Mask</th>
-					<td id="ipv4_subnet_mask">255.255.255.252</td>
+					<td id="ipv4_subnet_mask" class="animate">255.255.255.252</td>
 					<th>IP Class</th>
 					<td id="ipv4_ip_class">C</td>
 				</tr>
 				<tr>
 					<th>Wildcard Mask</th>
-					<td id="ipv4_wildcard_mask">0.0.0.3</td>
+					<td id="ipv4_wildcard_mask" class="animate">0.0.0.3</td>
 					<th>CIDR Notation</th>
-					<td id="ipv4_cidr_notation">/30</td>
+					<td id="ipv4_cidr_notation" class="animate">/30</td>
 				</tr>
 				<tr>
 					<th>Usable Host IP Range</th>
-					<td colspan="3" id="ipv4_usable_host_range">94.204.187.189 - 94.204.187.190</td>
+					<td colspan="3" id="ipv4_usable_host_range" class="animate">94.204.187.189 - 94.204.187.190</td>
 				</tr>
 				<tr>
 					<th>Binary ID</th>
-					<td colspan="3" id="ipv4_binary_id">01011110110011001011101110111111</td>
+					<td colspan="3" id="ipv4_binary_id" class="animate">01011110110011001011101110111111</td>
 				</tr>
 				<tr>
 					<th>Binary Subnet Mask</th>
-					<td colspan="3" id="ipv4_binary_mask">11111111.11111111.11111111.11111100</td>
+					<td colspan="3" id="ipv4_binary_mask" class="animate">11111111.11111111.11111111.11111100</td>
 				</tr>
 			</tbody>
 		</table>
@@ -697,27 +699,27 @@
 			<tbody>
 				<tr>
 					<th>IP Address</th>
-					<td class="wrap" id="ipv6_ip_address">2001:db8:85a3::8a2e:370:7334/64</td>
+					<td class="wrap animate" id="ipv6_ip_address">2001:db8:85a3::8a2e:370:7334/64</td>
 				</tr>
 				<tr>
 					<th>Full IP Address</th>
-					<td class="wrap" id="ipv6_full_ip_address">2001:0db8:85a3:0000:0000:8a2e:0370:7334</td>
+					<td class="wrap animate" id="ipv6_full_ip_address">2001:0db8:85a3:0000:0000:8a2e:0370:7334</td>
 				</tr>
 				<tr>
 					<th>Total IP Addresses</th>
-					<td class="wrap" id="ipv6_total_addresses">18446744073709551616</td>
+					<td class="wrap animate" id="ipv6_total_addresses">18446744073709551616</td>
 				</tr>
 				<tr>
 					<th>Total /64 Networks</th>
-					<td class="wrap" id="ipv6_total_networks"></td>
+					<td class="wrap animate" id="ipv6_total_networks"></td>
 				</tr>
 				<tr>
 					<th>Network</th>
-					<td class="wrap" id="ipv6_network">2001:0db8:85a3:0000::</td>
+					<td class="wrap animate" id="ipv6_network">2001:0db8:85a3:0000::</td>
 				</tr>
 				<tr>
 					<th>IP Range</th>
-					<td class="wrap"id="ipv6_ip_range">2001:0db8:85a3:0000:0000:0000:0000:0000 - 2001:0db8:85a3:0000:ffff:ffff:ffff:ffff</td>
+					<td class="wrap animate"id="ipv6_ip_range">2001:0db8:85a3:0000:0000:0000:0000:0000 - 2001:0db8:85a3:0000:ffff:ffff:ffff:ffff</td>
 				</tr>
 			</tbody>
 		</table>
